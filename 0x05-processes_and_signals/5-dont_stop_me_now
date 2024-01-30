@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# kills 4-to_infinity_and_beyond process that is running in the background using kill
+
+# get the PID of the process running in the background
+id=$(pgrep "bash ./4-to_infinity_and_beyond" -f)
+
+# kill the infinit process
+if [ -n "$id" ]
+then
+    kill -15 "$id"
+fi
