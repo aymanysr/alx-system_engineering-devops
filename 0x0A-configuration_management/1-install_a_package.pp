@@ -1,3 +1,4 @@
+#!/usr/bin/pup
 # This code will install Flask and Werkzeug via pip3 with specific versions
 package { 'flask':
     ensure  =>  '2.1.0',
