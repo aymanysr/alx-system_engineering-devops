@@ -11,11 +11,14 @@ sudo ufw default allow outgoing
 # allow ssh on port 22
 sudo ufw allow 22/tcp
 
-# allow http on port 80
-sudo ufw allow 80/tcp
-
 # allow https on port 443
 sudo ufw allow 443/tcp
 
+# allow http on port 80
+sudo ufw allow 80/tcp
+
 # enable ufw
-sudo ufw --force enable
+sudo ufw -y enable
+
+# show status
+sudo ufw status
