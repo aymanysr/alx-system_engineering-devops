@@ -4,8 +4,9 @@
 sudo apt-get update
 sudo apt-get -y install ufw
 
-# Set default incoming policy to deny
+# Set default policies
 sudo ufw default deny incoming
+sudo ufw default allow outgoing
 
 # allow ssh on port 22
 sudo ufw allow 22/tcp
