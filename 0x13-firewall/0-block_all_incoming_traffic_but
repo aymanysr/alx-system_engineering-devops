@@ -2,7 +2,7 @@
 
 # Install ufw if not already installed
 sudo apt-get update
-sudo apt-get install ufw
+sudo apt-get -y install ufw
 
 # Set default incoming policy to deny
 sudo ufw default deny incoming
@@ -17,4 +17,4 @@ sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 
 # enable ufw
-sudo ufw enable
+sudo ufw --force enable
