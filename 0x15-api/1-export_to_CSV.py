@@ -13,11 +13,18 @@ import sys
 
 if __name__ == "__main__":
 
+    # Check if the employee ID is provided
+    if len(sys.argv) != 2:
+        print("Usage: {} <employee_id>")
+        sys.exit(1)
+
     user_id = sys.argv[1]
 
-    BASE_URL = "https://jsonplaceholder.typicode.com"
+    # Base URL for the JSONPlaceholder API
+    BASE_URL = "https://jsonplaceholder.typicode.com/"
 
-    users_url = f"{BASE_URL}/users/{user_id}"
+    # Get the users information
+    users_url = f"{BASE_URL}users/{user_id}"
     user_response = requests.get(users_url)
     users_data = user_response.json()
 
@@ -25,13 +32,25 @@ if __name__ == "__main__":
 
     parameters = {"userId": user_id}
 
-    todos_url = f"{BASE_URL}/todos/"
+    # Get the to-do list for the user
+    todos_url = f"{BASE_URL}todos/"
     todo_response = requests.get(todos_url, params=parameters)
     todos_data = todo_response.json()
 
-    with open(f"{user_id}.csv", mode="w", newline="") as csv_file:
+    # Construct the CSV file name using the employee ID
+    csv_file_name = f"{user_id}.csv"
+
+    # Open the CSV file and write the data
+    with open(csv_file_name, mode="w", newline="") as csv_file:
         writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
 
+        # Write each todo to the CSV file
         for todo in todos_data:
-            writer.writerow([user_id, username, todo.get("completed"),
-                             todo.get("title")])
+            writer.writerow([
+                user_id,
+                users_data.get("name"),
+                todo.get("completed"),
+                todo.get("title"),
+            ])
+
+    print(f"Data exported to {csv_file_name}")
